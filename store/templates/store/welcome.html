@@ -1,0 +1,25 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-6 black-col">
+                <div class="row align-items-center justify-content-center header">
+                    <h1 class="header-title">
+                        HAUS<br>
+                        <span class="thin-line">OF</span><br>
+                        BARZ
+                    </h1>
+                </div> 
+            </div>
+            
+            <div class="col-md-6 white-col">
+                <h1 class="first-line">UNLEAS<span class="highlight-word">H</span></h1>
+                <h1 class="second-line">FR<span class="highlight-word">O</span>M</h1>
+                <h1 class="third-line"><span class="highlight-word">B</span>ENEATH</h1>
+            </div>
+        </div>
+        <img class="img" src="{% static 'images/splash.png' %}">
+    </div>    
+</div>
+{% endblock content %}
