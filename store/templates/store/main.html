@@ -5,9 +5,9 @@
 	<title>Ecom</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
     <script type="text/javascript">
-        var user = '{{request.user}}'
+		var user = '{{request.user}}'
 
-        function getToken(name) {
+		function getToken(name) {
 		    var cookieValue = null;
 		    if (document.cookie && document.cookie !== '') {
 		        var cookies = document.cookie.split(';');
@@ -23,7 +23,36 @@
 		    return cookieValue;
 		}
 		var csrftoken = getToken('csrftoken')
-    </script>
+
+		function getCookie(name) {
+		    // Split cookie string and get all individual name=value pairs in an array
+		    var cookieArr = document.cookie.split(";");
+
+		    // Loop through the array elements
+		    for(var i = 0; i < cookieArr.length; i++) {
+		        var cookiePair = cookieArr[i].split("=");
+
+		        /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+		        if(name == cookiePair[0].trim()) {
+		            // Decode the cookie value and return
+		            return decodeURIComponent(cookiePair[1]);
+		        }
+		    }
+
+		    // Return null if not found
+		    return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+
+		if (cart == undefined){
+			cart = {}
+			console.log('Cart Created!', cart)
+			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		}
+		console.log('Cart:', cart)
+	
+	</script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="/static/css/main.css?{% now "U" %}"/>
 </head>
@@ -43,16 +72,19 @@
                             <a class="navbar-item nav-link" href="#">Encouragement</a>
                             <a class="navbar-item nav-link" href="#">About Us</a>
                         </div>
+                        <div class="form-inline my-2 my-lg-0">
+                            <a  class="btn btn-outline-secondary" href="{% url 'store' %}">Login</a>
+                            <a href="/cart">
+                                <img class="cart-icon" src="{% static 'images/shopping-cart.png' %}" style="width:2.0em; height:2.6em;"> 
+                            </a>
+                            <p id ="cart-total">{{cartItems}}</p>
+                        </div>
                     </div> 
                     <a class="navbar-brand" href="/">
                             <img src="{% static 'images/hobLogo.png' %}" width="50" height="50" alt="">
                     </a>
                     
-                    <img class="account-icon" src="{% static 'images/accountLogo.png' %}" style="width:2em; height:2m;"> 
-                    <a href="/cart">
-                        <img class="cart-icon" src="{% static 'images/cart.png' %}" style="width:1.6em; height:2.6em;"> 
-                    </a>
-                    <p id ="cart-total">{{cartItems}}</p>
+                    
                     
                 </div>
          </nav>

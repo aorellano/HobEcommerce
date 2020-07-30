@@ -10,8 +10,11 @@ urlpatterns = [
     path('checkout/', views.checkout, name="checkout"),
     path('update_item/', views.updateItem, name="update_item"),
     path('api/', views.apiOverview, name="api-overview"),
-    path('product-list/', views.productList, name="task-list")
-    
+    path('product-list/', views.productList, name="product-list"),
+    path('product/<str:pk>/', views.product, name="product"),
+    path('order-list/', views.orderList, name="order-list"),
+    path('orderItem-list/', views.orderItemList, name="orderItem-list"),
+    path('process_order/', views.processOrder, name="process_order")
 
 ]
 

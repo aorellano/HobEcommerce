@@ -113,13 +113,17 @@
 .third-line {
     font-weight: 200;
     font-size: 30px;
-    text-indent: 6.1em;fre
+    text-indent: 6.1em;
     font-size: 30px;
     font-weight: 200;
     line-height: 2.0;
     animation-name: third-slide-in;
     animation-duration: 4s;
     animation-timing-function: ease-in-out;
+}
+
+.hidden{
+	display: none!important;
 }
 
 .img {
@@ -155,7 +159,7 @@
 
 .thumbnail{
 	width: 100%;
-	height: 250px;
+	height: 275px;
 	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
     -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
     box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
